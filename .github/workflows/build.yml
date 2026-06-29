@@ -1,8 +1,8 @@
-name: Build APK
+name: Build Android APK
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -10,24 +10,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # گرفتن پروژه
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # نصب Java
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      # نصب Android SDK
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      # قبول لایسنس‌ها (خیلی مهم)
+      - name: Accept Android licenses
+        run: yes | sdkmanager --licenses || true
 
+      # نصب ابزارهای لازم
+      - name: Install build tools
+        run: |
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+      # دسترسی gradlew
+      - name: Grant execute permission
+        run: chmod +x gradlew || true
+
+      # ساخت APK
       - name: Build Debug APK
         run: ./gradlew assembleDebug
 
+      # خروجی APK
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
