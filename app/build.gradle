@@ -1,12 +1,16 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
-    compileSdkVersion 33
+    namespace "com.example.floatinggta"
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.gta.cheat"
-        minSdkVersion 21
-        targetSdkVersion 33
+        applicationId "com.example.floatinggta"
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
@@ -19,4 +23,7 @@ android {
 }
 
 dependencies {
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.11.0"
 }
