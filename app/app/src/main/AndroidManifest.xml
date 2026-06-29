@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.floatinggta">
+
+    <application
+        android:label="Floating GTA Keyboard"
+        android:allowBackup="true"
+        android:theme="@android:style/Theme.DeviceDefault">
+
+        <service android:name=".MainService"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
