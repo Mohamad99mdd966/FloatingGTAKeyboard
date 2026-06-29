@@ -1,28 +1,17 @@
-plugins {
-    id 'com.android.application'
-}
-
-android {
-    namespace "com.example.floatinggta"
-    compileSdk 34
-
-    defaultConfig {
-        applicationId "com.example.floatinggta"
-        minSdk 21
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
     }
 }
 
-dependencies {
-    implementation "androidx.core:core-ktx:1.12.0"
-    implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "com.google.android.material:material:1.11.0"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
